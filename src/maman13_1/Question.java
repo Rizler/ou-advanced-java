@@ -5,11 +5,13 @@ import java.util.Arrays;
 import java.util.Collections;
 
 public class Question {
+    // Represents a multiple choice question.
     private String question;
     private String correctAnswer;
     private ArrayList<String> answers;
 
     public Question(String question, String correctAnswer, String[] answers) {
+        // Constructs a Question object. Randomizes the order of the answers.
         this.question = question;
         this.correctAnswer = correctAnswer;
         this.answers = new ArrayList<String>(Arrays.asList(answers));

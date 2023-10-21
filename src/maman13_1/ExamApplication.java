@@ -7,6 +7,8 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 public class ExamApplication extends Application {
+    // The main class of the exam application.
+
     public void start(Stage stage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("Exam.fxml"));
         Scene scene = new Scene(root);

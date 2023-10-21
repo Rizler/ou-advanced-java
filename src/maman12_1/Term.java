@@ -1,6 +1,7 @@
 package maman12_1;
 
 public class Term {
+    // A class representing a term in a polynom.
     private double coefficient;
     private int exponent;
 

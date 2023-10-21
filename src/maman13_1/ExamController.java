@@ -11,6 +11,7 @@ import javafx.scene.text.Text;
 import java.io.FileNotFoundException;
 
 public class ExamController {
+    // The javafx controller class of the exam application.
 
     @FXML
     private Text questionText;
@@ -25,6 +26,12 @@ public class ExamController {
 
     @FXML
     void buttonPressed(ActionEvent event) {
+        /*
+          Handles the button press event.
+          If the exam is not started, starts the exam.
+          If the exam is started, answers the current question and displays the next question.
+          If the exam is completed, displays the grade and allows to start a new exam.
+         */
         if (exam == null) {
             // New exam
             startExam();
@@ -47,6 +54,7 @@ public class ExamController {
     }
 
     private void startExam() {
+        // Starts a new exam.
         try {
             exam = new Exam("exam.txt");
             btn.setText("Next question");
@@ -58,6 +66,7 @@ public class ExamController {
     }
 
     private void endExam() {
+        // Ends the current exam and show the grade.
         questionText.setText("Your grade is: " + exam.getGrade());
         btn.setText("Start new exam");
         disableAnswerButtons();
@@ -65,6 +74,7 @@ public class ExamController {
     }
 
     private void displayNextQuestion() {
+        // Displays the next question in the exam.
         Question question = exam.getNextQuestion();
         questionText.setText(question.getQuestion());
         for (int i = 0; i < question.getAnswers().size(); i++) {
@@ -76,6 +86,7 @@ public class ExamController {
     }
 
     private void disableAnswerButtons() {
+        // Disables all answer buttons. Used when the exam is not started or ended.
         for (Toggle toggle : answerGroup.getToggles()) {
             RadioButton radioButton = (RadioButton) toggle;
             radioButton.setText("");

@@ -7,16 +7,27 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Exam {
+    /**
+     * An Exam object represents a multiple choice exam, generated from a text file.
+     * The exam is represented by a list of questions.
+     * The exam can be answered by answering each question in order.
+     */
+
     private ArrayList<Question> questions;
     private int nextQuestionIndex;
     private int correctAnswersCount;
 
     public Exam(String fileName) throws FileNotFoundException {
+        // Constructs an Exam object from a text file.
         questions = new ArrayList<Question>();
         parseExamFile(fileName);
     }
 
     public Question getNextQuestion() {
+        /*
+          Returns the next question in the exam.
+          If there are no more questions, returns null.
+         */
         if (nextQuestionIndex >= questions.size()) {
             return null;
         }
@@ -24,6 +35,11 @@ public class Exam {
     }
 
     public void answerQuestion(String answer) {
+        /*
+          Answers the next question in the exam.
+          If there are no more questions, does nothing.
+          If the answer is correct, increments the correct answers count.
+         */
         if (nextQuestionIndex >= questions.size()) {
             return;
         }
@@ -33,15 +49,13 @@ public class Exam {
         nextQuestionIndex += 1;
     }
 
-    public void answerQuestion(int answerIndex) {
-        answerQuestion(questions.get(nextQuestionIndex).getAnswers().get(answerIndex - 1));
-    }
-
     public boolean isCompleted() {
+        // Returns true if all questions in the exam were answered.
         return nextQuestionIndex >= questions.size();
     }
 
     public int getGrade() {
+        // Returns the grade of the exam, as a percentage.
         if (questions.isEmpty()) {
             return 0;
         }
@@ -49,6 +63,7 @@ public class Exam {
     }
 
     private void parseExamFile(String fileName) throws FileNotFoundException {
+        // Parses the exam file and populates the questions list.
         URL fileUrl = getClass().getResource(fileName);
         if (fileUrl == null) {
             throw new FileNotFoundException(fileName);
@@ -65,26 +80,5 @@ public class Exam {
             questions.add(new Question(question, correctAnswer, answers));
         }
         input.close();
-    }
-
-    public static void main(String[] args) {
-        try {
-            Exam exam = new Exam("exam.txt");
-            Question question;
-            Scanner input = new Scanner(System.in);
-            while ((question = exam.getNextQuestion()) != null) {
-                System.out.println(question.getQuestion());
-                ArrayList<String> answers = question.getAnswers();
-                for (int i = 0; i < answers.size(); i++) {
-                    System.out.println((i + 1) + ". " + answers.get(i));
-                }
-                System.out.print("Enter your answer: ");
-                exam.answerQuestion(input.nextInt());
-            }
-            input.close();
-            System.out.println("Your grade is: " + exam.getGrade());
-        } catch (FileNotFoundException e) {
-            System.out.println("Exam file not found");
-        }
     }
 }

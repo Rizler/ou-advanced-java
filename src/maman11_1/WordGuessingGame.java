@@ -4,6 +4,9 @@ import java.util.HashSet;
 import java.util.Scanner;
 
 public class WordGuessingGame {
+    /**
+     * Logic for the word guessing game.
+     */
     private boolean isValidGuess(String input, HashSet<Character> previousGuesses) {
         // Check if the input is a valid guess.
         if (input.length() != 1) {

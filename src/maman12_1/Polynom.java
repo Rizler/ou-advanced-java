@@ -6,6 +6,12 @@ import java.util.Collection;
 import java.util.Collections;
 
 public class Polynom {
+    /**
+     * A class representing a polynom.
+     * A polynom is a sum of terms.
+     * Each term is a coefficient and an exponent.
+     * The polynom is represented as a list of terms.
+     */
     private ArrayList<Term> terms;
 
     public Polynom(ArrayList<Double> coefficients, ArrayList<Integer> exponents) {
