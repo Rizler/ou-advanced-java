@@ -143,7 +143,6 @@ public class PhoneBookController {
         Node addButton = dialog.getDialogPane().lookupButton(addButtonType);
         addButton.setDisable(true);
 
-
         // Only allow numbers in the phone number field.
         UnaryOperator<TextFormatter.Change> integerFilter = change -> {
             String input = change.getText();
@@ -167,7 +166,7 @@ public class PhoneBookController {
         // Request focus on the name field by default.
         Platform.runLater(nameField::requestFocus);
 
-        // Convert the result to a name-phone number-pair when the login button is clicked.
+        // Convert the result to a name-number-pair when the login button is clicked.
         dialog.setResultConverter(dialogButton -> {
             if (dialogButton == addButtonType) {
                 return new Pair<>(nameField.getText(), phoneNumberField.getText());
