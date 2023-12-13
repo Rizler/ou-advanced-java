@@ -80,7 +80,7 @@ public class Polynom {
     }
 
     public Polynom minus(Polynom other) {
-        // Subtract two polynoms.
+        // Subtract two polynoms. This is done by multiplying other by -1 and using the plus method.
         ArrayList<Term> multipliedTerms = new ArrayList<Term>();
         for (Term term : other.terms) {
             multipliedTerms.add(new Term(-term.getCoefficient(), term.getExponent()));
